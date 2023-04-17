@@ -1,0 +1,67 @@
+cabal-version: 2.2
+
+name:           comet-hs
+version:        0.0.0.0
+-- synopsis:       $synopsis
+-- description:    $description
+-- category:       $category
+-- homepage:       $gitrepo#readme
+-- bug-reports:    $gitrepo/issues
+-- maintainer:     $maintainer
+build-type:     Simple
+
+-- source-repository head
+--   type: git
+--   location: $gitrepo
+
+common common-opts
+  default-extensions:
+    BinaryLiterals
+    BlockArguments
+    ConstraintKinds
+    DeriveAnyClass
+    DeriveDataTypeable
+    DeriveFoldable
+    DeriveFunctor
+    DeriveGeneric
+    DeriveLift
+    DeriveTraversable
+    DerivingStrategies
+    DerivingVia
+    GADTs
+    LambdaCase
+    MultiWayIf
+    NumericUnderscores
+    OverloadedStrings
+    StrictData
+    TupleSections
+    TypeApplications
+    TypeOperators
+
+  build-depends:
+      base
+
+  default-language: Haskell2010
+
+library comet-core
+  import: common-opts
+  exposed-modules:
+      Comet.Core
+  hs-source-dirs:
+      core
+  build-depends:
+        text
+      , proto3-suite
+
+test-suite test
+  import: common-opts
+  type: exitcode-stdio-1.0
+  main-is: Spec.hs
+  hs-source-dirs:
+      test
+  build-depends:
+    , comet-core
+    , QuickCheck
+    , hspec
+    , hspec-expectations
+    , hspec-discover

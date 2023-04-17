@@ -1,0 +1,6 @@
+cradle:
+  cabal:
+    - path: "./test"
+      component: "comet-hs:test"
+    - path: "./core"
+      component: "lib:comet-core"
