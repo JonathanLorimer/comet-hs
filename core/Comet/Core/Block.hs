@@ -1,17 +1,19 @@
 module Comet.Core.Block where
 
-import Data.Text
+import Comet.Core.Address
+import Comet.Core.Evidence
+import Comet.Core.Hash
+import Comet.Core.Proof
+import Comet.Core.Time
+import Data.ByteString
+import Data.Int (Int32)
 import Data.Word
 
 data Block = Block
   { blockHeader :: Header
-  , blockData :: Data
+  , blockData :: TransactionList
   , blockEvidence :: [Evidence]
   , blockLastCommit :: Commit
   }
 
-data Header = Header
-  { headerVersion :: Version
-  , headerChainId :: Text -- Must be less than 50 bytes, potentiall opportunity for refinement types
-  , headerHeight :: Word64
-
+newtype TransactionList = TransactionList {unTransactionList :: [ByteString]}

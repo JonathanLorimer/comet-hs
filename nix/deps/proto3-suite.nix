@@ -14,7 +14,7 @@ mkDerivation {
   pname = "proto3-suite";
   version = "0.6.0";
   src = fetchgit {
-    url = "git@github.com:JonathanLorimer/proto3-suite.git";
+    url = "https://github.com/JonathanLorimer/proto3-suite.git";
     sha256 = "0gcc10w33siqlg1kc7v97k564qyb3q3r4l1bqm37rqm646dj572w";
     rev = "bbf0e9683e5171356eb712a74626c685c47b40f9";
     fetchSubmodules = true;

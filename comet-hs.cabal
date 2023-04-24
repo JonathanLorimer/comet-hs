@@ -1,14 +1,14 @@
 cabal-version: 2.2
+name:          comet-hs
+version:       0.0.0.0
 
-name:           comet-hs
-version:        0.0.0.0
 -- synopsis:       $synopsis
 -- description:    $description
 -- category:       $category
 -- homepage:       $gitrepo#readme
 -- bug-reports:    $gitrepo/issues
 -- maintainer:     $maintainer
-build-type:     Simple
+build-type:    Simple
 
 -- source-repository head
 --   type: git
@@ -29,6 +29,7 @@ common common-opts
     DerivingStrategies
     DerivingVia
     GADTs
+    ImportQualifiedPost
     LambdaCase
     MultiWayIf
     NumericUnderscores
@@ -38,30 +39,45 @@ common common-opts
     TypeApplications
     TypeOperators
 
-  build-depends:
-      base
-
-  default-language: Haskell2010
+  build-depends:      base
+  default-language:   Haskell2010
 
 library comet-core
-  import: common-opts
+  import:          common-opts
   exposed-modules:
-      Comet.Core
-  hs-source-dirs:
-      core
+    Comet.Core
+    Comet.Core.Address
+    Comet.Core.Block
+    Comet.Core.BlockId
+    Comet.Core.BlockParts
+    Comet.Core.Commit
+    Comet.Core.Evidence
+    Comet.Core.Hash
+    Comet.Core.LightBlock
+    Comet.Core.Proof
+    Comet.Core.Proposal
+    Comet.Core.Signature
+    Comet.Core.SignedMessage
+    Comet.Core.Time
+    Comet.Core.Validator
+    Comet.Core.Version
+    Comet.Core.Vote
+
+  hs-source-dirs:  core
   build-depends:
-        text
-      , proto3-suite
+    , bytestring
+    , containers
+    , proto3-suite
+    , text
 
 test-suite test
-  import: common-opts
-  type: exitcode-stdio-1.0
-  main-is: Spec.hs
-  hs-source-dirs:
-      test
+  import:         common-opts
+  type:           exitcode-stdio-1.0
+  main-is:        Spec.hs
+  hs-source-dirs: test
   build-depends:
     , comet-core
-    , QuickCheck
     , hspec
-    , hspec-expectations
     , hspec-discover
+    , hspec-expectations
+    , QuickCheck
